@@ -22,7 +22,7 @@
   .label { font:700 11px/13px "Segoe UI", Arial; color:var(--muted); text-transform:uppercase; letter-spacing:.3px;
     white-space:nowrap; overflow:hidden; }
   .label i { font-style:normal; color:var(--red); }
-  .lead .pic { position:relative; height:92px; margin-top:2px; background:#e4ddca; border-radius:3px; overflow:hidden; }
+  .lead .pic { position:relative; height:100px; margin-top:2px; background:#e4ddca; border-radius:3px; overflow:hidden; }
   .lead .pic svg { position:absolute; inset:0; width:100%; height:100%; }
   .stamp { font-family:Impact, "Arial Narrow Bold", sans-serif; color:var(--red); line-height:1; white-space:nowrap; }
   .lead .stamp { position:absolute; left:8px; top:7px; font-size:31px; background:var(--paper); padding:2px 7px 1px;
@@ -33,12 +33,11 @@
   .lead p { font:600 14.2px/1.27 "Segoe UI", Arial; margin-top:3px; color:#1d1c19; }
   .cards { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; padding:8px 14px 0; border-top:0; }
   .cardrow-rule { margin:8px 14px 0; border-top:2px solid var(--rule); }
-  .card { background:#fbf8f0; border:1px solid #cfc6b0; border-radius:3px; padding:4px 9px 5px; height:184px; overflow:hidden; }
-  .card .pic { display:flex; align-items:center; justify-content:space-between; height:62px; margin-top:1px; }
-  .card .stamp { font-size:38px; }
+  .card { background:#fbf8f0; border:1px solid #cfc6b0; border-radius:3px; padding:5px 9px 6px; height:178px; overflow:hidden; }
+  .card .pic { display:flex; align-items:center; justify-content:space-between; height:84px; margin-top:2px; }
+  .card .stamp { font-size:40px; }
   .card svg { flex:none; }
-  .card h3 { font:800 20px/1.1 "Segoe UI", Arial; margin-top:2px; letter-spacing:-.4px; }
-  .card p { font:600 13.4px/1.24 "Segoe UI", Arial; margin-top:3px; color:#26241f; }
+  .card h3 { font:800 21px/1.12 "Segoe UI", Arial; margin-top:4px; letter-spacing:-.4px; }
   .bottom { display:grid; grid-template-columns:1fr 292px; gap:14px; padding:10px 14px 0; }
   .mapbox h4, .briefs h4 { font:800 12px/15px "Segoe UI", Arial; letter-spacing:.6px; border-bottom:2px solid var(--rule);
     margin-bottom:3px; }
@@ -47,7 +46,7 @@
   .check b.t { font:800 12px/15px "Segoe UI", Arial; letter-spacing:.5px; color:var(--red); }
   .check p { font:600 11px/1.28 "Segoe UI", Arial; color:#222; }
   .briefs .cols { columns:2; column-gap:16px; column-rule:1px solid #c4bba5; }
-  .briefs li { list-style:none; font:600 15.6px/1.22 "Segoe UI", Arial; break-inside:avoid; margin-bottom:3px; color:#141412; }
+  .briefs li { list-style:none; font:600 15.6px/1.22 "Segoe UI", Arial; break-inside:avoid; margin-bottom:2px; color:#141412; }
   .check { margin-top:0; }
   .check p { font:600 13.6px/1.27 "Segoe UI", Arial; }
   .check ul { margin-top:3px; }
@@ -158,28 +157,48 @@ const flame = (x, y, s = 1) => `<g transform="translate(${x},${y}) scale(${s})">
   <path d="M1 -2 C-4 -6 -3 -12 1 -18 C3 -12 7 -10 5 -4Z" fill="${Y}"/></g>`;
 const waves = (w, y) => `<path d="M0 ${y} ${Array.from({length: Math.ceil(w / 20)}, (_, i) => `q5 -4 10 0 t10 0`).join(' ')} V200 H0Z" fill="#7d9fb0"/>`;
 const PICS = {
+  // COP31: the plenary hall in Antalya, an empty chair at the table, the planet cracked on the big screen
   cop: (w, h) => `<svg width="${w}" height="${h}" viewBox="0 0 325 112">
-    <rect width="325" height="112" fill="#e9e2cf"/>
-    <circle cx="232" cy="58" r="40" fill="#5f93b3"/><path d="M205 35 q15 6 12 20 q-8 10 4 22 q-12 4 -20 -10 q-6 -16 4 -32Z M240 24 q14 4 22 18 q-12 -2 -16 8 q-10 -8 -6 -26Z M248 70 q12 -4 20 6 q-6 14 -20 16 q4 -10 0 -22Z" fill="#6f9a5a"/>
-    <path d="M232 14 L228 40 L238 58 L226 78 L234 102" stroke="#e9e2cf" stroke-width="5" fill="none"/>
-    <rect x="292" y="18" width="12" height="70" rx="6" fill="${W}" stroke="${K}" stroke-width="2"/><rect x="295" y="34" width="6" height="52" fill="${R}"/><circle cx="298" cy="92" r="10" fill="${R}" stroke="${K}" stroke-width="2"/>
-    <rect x="34" y="78" width="150" height="10" fill="${G}"/><rect x="44" y="88" width="6" height="22" fill="${G}"/><rect x="168" y="88" width="6" height="22" fill="${G}"/>
-    <rect x="70" y="64" width="34" height="14" fill="${W}" stroke="${K}"/><path d="M78 69h18M78 73h12" stroke="${K}"/>
-    <rect x="118" y="60" width="30" height="18" fill="${W}" stroke="${K}" transform="rotate(12 133 69)"/></svg>`,
+    <defs><linearGradient id="hall" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#22395a"/><stop offset="1" stop-color="#4a6d93"/></linearGradient></defs>
+    <rect width="325" height="112" fill="url(#hall)"/>
+    ${['#c8102e','#f2a516','#2f7d3b','#1f4e8c','#fff','#6a3d9a','#c4561a','#137a80','#b0202f'].map((c, i) =>
+      `<path d="M${120 + i * 22} 6 v24" stroke="#cfd6de" stroke-width="1.2"/><rect x="${121 + i * 22}" y="7" width="13" height="9" fill="${c}"/>`).join('')}
+    <rect x="160" y="30" width="118" height="54" rx="3" fill="#0f1c2c" stroke="#8aa0b8"/>
+    <circle cx="219" cy="57" r="22" fill="#4f8fbf"/><path d="M204 46 q9 3 7 12 q-4 6 2 12 q-8 2 -11 -6 q-3 -9 2 -18Z M224 38 q9 3 13 11 q-7 -1 -9 5 q-6 -5 -4 -16Z" fill="#6fa35a"/>
+    <path d="M220 34 l-3 14 l6 9 l-7 11 l4 11" stroke="#0f1c2c" stroke-width="3.2" fill="none"/>
+    <rect x="296" y="26" width="10" height="56" rx="5" fill="${W}" stroke="${K}" stroke-width="1.6"/><rect x="298.5" y="36" width="5" height="44" fill="${R}"/><circle cx="301" cy="86" r="8" fill="${R}" stroke="${K}" stroke-width="1.6"/>
+    <rect x="0" y="84" width="325" height="28" fill="#2a1d14"/><rect x="8" y="80" width="290" height="8" fill="#8b5e3c"/>
+    ${[22, 52, 82, 142, 172, 202, 232, 262].map(x => `<circle cx="${x}" cy="70" r="6.5" fill="#1a1a1a"/><path d="M${x - 9} 82 q9 -12 18 0Z" fill="#1a1a1a"/>`).join('')}
+    <path d="M106 64 h16 v16 h-16Z M106 64 v-10 h16 v10" fill="none" stroke="#d8c7a8" stroke-width="2"/>
+    <rect x="128" y="74" width="20" height="7" fill="${W}" transform="rotate(-8 138 77)"/></svg>`,
+  // Benghazi at dawn: harbour cranes, a sea drone's wake, the corvette rolling over by the quay
   warship: (w, h) => `<svg width="${w}" height="${h}" viewBox="0 0 325 112">
-    <rect width="325" height="112" fill="#cfdde3"/><rect x="0" y="42" width="325" height="70" fill="#9db7c3"/>
-    <g transform="rotate(-24 210 70)"><path d="M140 66 H290 L276 86 H152Z" fill="#59626b"/><rect x="182" y="48" width="44" height="18" fill="#6c757d"/><rect x="198" y="34" width="10" height="14" fill="#6c757d"/><path d="M226 56 h28" stroke="#59626b" stroke-width="4"/></g>
-    ${waves(325, 74)}
-    <path d="M60 60 L104 70" stroke="${K}" stroke-width="2" stroke-dasharray="4 3"/><path d="M40 56 h22 l6 4 -6 4 h-22Z" fill="${K}"/>
-    ${flame(232, 62, 1.1)}${flame(258, 58, .8)}
-    <circle cx="270" cy="30" r="10" fill="#8a8a8a" opacity=".6"/><circle cx="286" cy="20" r="13" fill="#8a8a8a" opacity=".5"/></svg>`,
+    <defs><linearGradient id="dawn" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f3b27a"/><stop offset=".6" stop-color="#fbe3c0"/></linearGradient>
+      <linearGradient id="bay" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7fa4b6"/><stop offset="1" stop-color="#3f6b80"/></linearGradient></defs>
+    <rect width="325" height="112" fill="url(#dawn)"/><circle cx="60" cy="44" r="14" fill="#fff3d6"/>
+    <path d="M250 50 v-36 h34 M262 14 l22 -6 M250 26 l18 0" stroke="#3a3330" stroke-width="3" fill="none"/><path d="M290 50 v-28 h24 M300 22 l14 -4" stroke="#3a3330" stroke-width="3" fill="none"/>
+    <rect x="236" y="48" width="89" height="8" fill="#5b524b"/>
+    <rect y="54" width="325" height="58" fill="url(#bay)"/>
+    <g transform="rotate(-30 196 66)"><path d="M126 62 H262 L248 82 H138Z" fill="#4c555e"/><rect x="170" y="44" width="40" height="18" fill="#626c76"/><rect x="186" y="30" width="8" height="14" fill="#626c76"/><path d="M210 52 h26" stroke="#4c555e" stroke-width="4"/><path d="M126 62 h136" stroke="#9aa3ab" stroke-width="1.5"/></g>
+    <path d="M150 88 q30 -10 60 -6 q-16 8 -60 6Z" fill="#e8f1f5" opacity=".8"/>
+    ${flame(214, 56, 1.15)}${flame(236, 50, .85)}
+    <path d="M216 26 q-10 -8 2 -16 q12 -6 18 4 q12 -2 12 8 q-2 10 -14 8Z" fill="#5a5552" opacity=".75"/>
+    <path d="M14 82 q30 -2 70 -6 q20 -2 46 -6" stroke="#e8f1f5" stroke-width="2.5" fill="none" stroke-dasharray="6 4"/>
+    <path d="M118 66 h16 l5 4 -5 4 h-16Z" fill="${K}"/>
+    ${waves(325, 96)}</svg>`,
+  // Strait of Hormuz at dusk: two tankers burning, the Iranian coast behind, a mine's blast in the water
   tankers: (w, h) => `<svg width="${w}" height="${h}" viewBox="0 0 325 112">
-    <rect width="325" height="112" fill="#efd9b8"/><rect y="62" width="325" height="50" fill="#8fb1bf"/>
-    <path d="M150 52 h170 l-10 18 h-150Z" fill="#7a2a1a"/><rect x="292" y="34" width="20" height="18" fill="${W}"/><path d="M162 52 h120" stroke="#b55" stroke-width="4"/>
-    <path d="M30 66 h130 l-8 14 h-114Z" fill="#26323a"/><rect x="138" y="50" width="16" height="16" fill="${W}"/><path d="M40 66 h90" stroke="#555" stroke-width="3"/>
-    ${flame(210, 52, 1.5)}${flame(240, 52, 1.1)}${flame(80, 66, 1.3)}
-    <circle cx="214" cy="12" r="12" fill="#555" opacity=".55"/><circle cx="236" cy="6" r="10" fill="#555" opacity=".45"/><circle cx="86" cy="24" r="12" fill="#555" opacity=".5"/>
-    ${waves(325, 84)}</svg>`,
+    <defs><linearGradient id="dusk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2d2547"/><stop offset=".55" stop-color="#c9603a"/><stop offset="1" stop-color="#f0a35e"/></linearGradient></defs>
+    <rect width="325" height="112" fill="url(#dusk)"/>
+    <path d="M0 58 l30 -8 l26 4 l30 -10 l40 8 l34 -6 l44 9 l40 -7 l40 6 l41 -4 V64 H0Z" fill="#3b2b2e"/>
+    <rect y="62" width="325" height="50" fill="#27465a"/>
+    <path d="M196 56 c-6 -14 4 -26 18 -30 c4 -12 22 -14 30 -4 c14 -2 22 10 16 20" fill="#1b1716" opacity=".75"/>
+    <path d="M56 64 c-8 -12 2 -24 14 -26 c6 -10 22 -8 26 2 c10 0 14 10 8 18" fill="#1b1716" opacity=".7"/>
+    <path d="M150 62 h170 l-10 17 h-150Z" fill="#7a2a1a"/><rect x="292" y="44" width="20" height="18" fill="${W}"/><rect x="296" y="36" width="6" height="8" fill="#555"/><path d="M162 62 h120" stroke="#b55" stroke-width="4"/>
+    <path d="M18 74 h132 l-8 14 h-116Z" fill="#1d2a32"/><rect x="126" y="58" width="16" height="16" fill="${W}"/><path d="M28 74 h92" stroke="#556" stroke-width="3"/>
+    ${flame(206, 62, 1.7)}${flame(238, 62, 1.25)}${flame(262, 62, .8)}${flame(66, 74, 1.4)}${flame(92, 74, .9)}
+    <path d="M150 96 l6 -12 l4 10 l5 -14 l4 14 l6 -8 l3 10Z" fill="#e8f1f5" opacity=".9"/>
+    ${waves(325, 98)}</svg>`,
   flats: (s) => `<svg width="${s}" height="${s}" viewBox="0 0 70 70">
     <rect x="8" y="12" width="40" height="52" fill="#b9b09b" stroke="${K}" stroke-width="1.5"/>
     ${[0,1,2,3,4].map(r => [0,1,2].map(c => `<rect x="${13 + c * 12}" y="${17 + r * 9}" width="7" height="5" fill="#5d6a73"/>`).join('')).join('')}
@@ -237,15 +256,14 @@ document.querySelectorAll('.lead .pic svg').forEach(svg => svg.setAttribute('pre
 document.getElementById('cards').innerHTML = CARDS.map(s => `
   <article class="card">
     <div class="label"><span class="num">${s.n}</span>${s.place} · ${s.src}</div>
-    <div class="pic"><div class="stamp">${s.stamp}</div>${PICS[s.pic](62)}</div>
+    <div class="pic"><div class="stamp">${s.stamp}</div>${PICS[s.pic](80)}</div>
     <h3>${s.head}</h3>
-    <p>${s.body}</p>
   </article>`).join('');
 
 // shrink any card stamp that would run into its picture
 document.querySelectorAll('.card .pic').forEach(p => {
-  const st = p.querySelector('.stamp'); let size = 38;
-  while (st.offsetWidth > p.clientWidth - 68 && size > 24) st.style.fontSize = (--size) + 'px';
+  const st = p.querySelector('.stamp'); let size = 40;
+  while (st.offsetWidth > p.clientWidth - 86 && size > 24) st.style.fontSize = (--size) + 'px';
 });
 
 document.getElementById('briefs').innerHTML =
