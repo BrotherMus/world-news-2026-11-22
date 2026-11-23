@@ -32,22 +32,25 @@
     font:700 11px/17px Arial; text-align:center; margin-right:4px; vertical-align:1px; }
   .lead h2 { font:800 20.5px/1.12 "Segoe UI", Arial; margin-top:5px; letter-spacing:-.3px; }
   .lead p { font:600 13.2px/1.28 "Segoe UI", Arial; margin-top:3px; color:#1d1c19; }
-  .cards { display:grid; grid-template-columns:repeat(5,1fr); gap:8px; padding:8px 14px 0; border-top:0; }
+  .cards { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; padding:8px 14px 0; border-top:0; }
   .cardrow-rule { margin:8px 14px 0; border-top:2px solid var(--rule); }
-  .card { background:#fbf8f0; border:1px solid #cfc6b0; border-radius:3px; padding:4px 6px 5px; height:136px; overflow:hidden; }
-  .card .pic { display:flex; align-items:center; justify-content:space-between; height:64px; margin-top:2px; }
-  .card .stamp { font-size:30px; }
+  .card { background:#fbf8f0; border:1px solid #cfc6b0; border-radius:3px; padding:5px 9px 6px; height:178px; overflow:hidden; }
+  .card .pic { display:flex; align-items:center; justify-content:space-between; height:84px; margin-top:2px; }
+  .card .stamp { font-size:40px; }
   .card svg { flex:none; }
-  .card h3 { font:800 18px/1.12 "Segoe UI", Arial; margin-top:2px; letter-spacing:-.35px; }
-  .bottom { display:grid; grid-template-columns:286px 1fr; gap:12px; padding:8px 14px 0; }
+  .card h3 { font:800 21px/1.12 "Segoe UI", Arial; margin-top:4px; letter-spacing:-.4px; }
+  .bottom { display:grid; grid-template-columns:1fr 292px; gap:14px; padding:10px 14px 0; }
   .mapbox h4, .briefs h4 { font:800 12px/15px "Segoe UI", Arial; letter-spacing:.6px; border-bottom:2px solid var(--rule);
     margin-bottom:3px; }
   .mapbox svg { display:block; background:var(--sea); border-radius:3px; }
   .check { margin-top:6px; border:2px solid var(--ink); padding:4px 7px 5px; background:#fffdf6; }
   .check b.t { font:800 12px/15px "Segoe UI", Arial; letter-spacing:.5px; color:var(--red); }
   .check p { font:600 11px/1.28 "Segoe UI", Arial; color:#222; }
-  .briefs .cols { columns:3; column-gap:12px; column-rule:1px solid #c4bba5; }
-  .briefs li { list-style:none; font:600 13.4px/1.25 "Segoe UI", Arial; break-inside:avoid; margin-bottom:4px; color:#141412; }
+  .briefs .cols { columns:2; column-gap:16px; column-rule:1px solid #c4bba5; }
+  .briefs li { list-style:none; font:600 16px/1.25 "Segoe UI", Arial; break-inside:avoid; margin-bottom:7px; color:#141412; }
+  .check { margin-top:0; }
+  .check p { font:600 14px/1.3 "Segoe UI", Arial; }
+  .check b.t { font-size:16px; line-height:20px; }
   .briefs li b { color:var(--red); font-weight:800; }
   footer { position:absolute; left:14px; right:14px; bottom:6px; border-top:3px double var(--rule); padding-top:3px;
     font:600 11px/1.3 "Segoe UI", Arial; color:#2b2924; }
@@ -65,16 +68,12 @@
 <div class="cardrow-rule"></div>
 <section class="cards" id="cards"></section>
 <section class="bottom">
-  <div class="mapbox">
-    <h4>WHERE · map numbers = story numbers</h4>
-    <div id="map"></div>
-    <div class="check"><b class="t">✓ DATE CHECK</b>
-      <p id="check"></p>
-    </div>
-  </div>
   <div class="briefs">
     <h4>ALSO ON SUNDAY 22 NOVEMBER</h4>
     <ul class="cols" id="briefs"></ul>
+  </div>
+  <div class="check"><b class="t">✓ DATE CHECK</b>
+    <p id="check"></p>
   </div>
 </section>
 <footer id="footer"></footer>
@@ -107,32 +106,20 @@ const CARDS = [
     stamp:'4 KILLED', head:'RSF drones hit homes, UN office', pic:'drone' },
   { n:10, place:'Serang, Indonesia', field:'Industrial fire', region:'E. Asia & Pacific', src:'AFP', at:[106.1,-6.1],
     stamp:'36 MISSING', head:'Sweet-factory fire kills 3 in Banten', pic:'factory' },
-  { n:11, place:'West Bank', field:'Occupation', region:'Middle East', src:'Wafa', at:[35.2,31.9],
-    stamp:'12 CARS', head:'Settlers torch cars in 3 villages', pic:'car' },
-  { n:12, place:'Tupanciretã, Brazil', field:'Weather', region:'S. America', src:'AFP', at:[-53.8,-29.1],
+  { n:11, place:'Tupanciretã, Brazil', field:'Weather', region:'S. America', src:'AFP', at:[-53.8,-29.1],
     stamp:'250 HURT', head:'Violent storm kills 5 in the south', pic:'storm' },
-  { n:13, place:'Seoul, S. Korea', field:'Education & AI', region:'E. Asia & Pacific', src:'AFP', at:[127,37.6],
-    stamp:'QUITS', head:'Minister quits over AI exam cheating', pic:'exam' },
 ];
 const BRIEFS = [
-  { place:'Israel', field:'Israeli politics', region:'Middle East', text:'Likud–Yashar coalition talks end with no deal; Eisenkot has until 6 Dec' },
-  { place:'Yemen', field:'Yemen war', region:'Middle East', text:'Saudis down Houthi drone bound for Riyadh; Houthis say 6 hurt in Sanaa' },
-  { place:'Ukraine', field:'Russia–Ukraine', region:'Europe', text:'Zelenskyy: 2,700 drones and 165 missiles in a week; asks US to free Patriots' },
-  { place:'Vyshneve', field:'Russia–Ukraine', region:'Europe', text:'drone hits grocery store, 3 killed, 15 hurt' },
-  { place:'Bangladesh', field:'Labour', region:'South Asia', text:'Gazipur garment workers clash with police over minimum wage' },
-  { place:'India', field:'Road safety', region:'South Asia', text:'Rajasthan road crashes kill at least 12' },
-  { place:'Taiwan', field:'Film', region:'E. Asia & Pacific', text:'HK film “We Are Born Good” wins Golden Horse top prize' },
-  { place:'Philippines', field:'Infrastructure', region:'E. Asia & Pacific', text:'bridge tilts in Central Luzon, 9 fall into river' },
-  { place:'Malaysia', field:'Floods', region:'E. Asia & Pacific', text:'1,884 flood evacuees in Selangor' },
-  { place:'Thailand', field:'Autos', region:'E. Asia & Pacific', text:'Honda, Toyota recall 1.6m cars over airbags' },
-  { place:'Cambodia', field:'Health', region:'E. Asia & Pacific', text:'first mpox case in 30 months' },
-  { place:'Japan', field:'Weather', region:'E. Asia & Pacific', text:'heavy snow strands Fukushima villagers' },
-  { place:'Seattle', field:'Immigration', region:'N. America', text:'officials condemn ICE arrests at the airport' },
-  { place:'US Senate', field:'US politics', region:'N. America', text:'Trump attacks Schumer as Democrats seek new leader' },
-  { place:'Crypto', field:'Crypto', region:'N. America', text:'Trump to host dinner for top holders of his meme coin' },
-  { place:'Poland', field:'Accidents', region:'Europe', text:'house fire in Trzcianka kills 3' },
-  { place:'Türkiye', field:'Wildlife', region:'Europe', text:'lion on the loose alarms residents' },
-  { place:'Nigeria', field:'Accidents', region:'Africa', text:'major fire at a Lagos fuel station' },
+  { place:'West Bank', field:'Occupation', region:'Middle East', text:'settlers torch 12 cars in 3 villages' },
+  { place:'Israel', field:'Israeli politics', region:'Middle East', text:'Likud–Yashar coalition talks fail' },
+  { place:'Yemen', field:'Yemen war', region:'Middle East', text:'Saudis down Houthi drone aimed at Riyadh' },
+  { place:'Ukraine', field:'Russia–Ukraine', region:'Europe', text:'Zelenskyy asks US to release Patriots' },
+  { place:'Seattle', field:'Immigration', region:'N. America', text:'officials condemn ICE airport arrests' },
+  { place:'South Korea', field:'Education & AI', region:'E. Asia & Pacific', text:'minister quits over AI exam cheating' },
+  { place:'Bangladesh', field:'Labour', region:'South Asia', text:'garment workers clash with police over pay' },
+  { place:'Taiwan', field:'Film', region:'E. Asia & Pacific', text:'“We Are Born Good” wins Golden Horse' },
+  { place:'Thailand', field:'Autos', region:'E. Asia & Pacific', text:'Honda, Toyota recall 1.6m cars' },
+  { place:'Philippines', field:'Infrastructure', region:'E. Asia & Pacific', text:'tilting bridge drops 9 into a river' },
 ];
 
 const ALL = [...LEADS, ...CARDS, ...BRIEFS];
@@ -233,52 +220,26 @@ document.querySelectorAll('.lead .pic svg').forEach(svg => svg.setAttribute('pre
 document.getElementById('cards').innerHTML = CARDS.map(s => `
   <article class="card">
     <div class="label"><span class="num">${s.n}</span>${s.place} · ${s.src}</div>
-    <div class="pic"><div class="stamp">${s.stamp}</div>${PICS[s.pic](64)}</div>
+    <div class="pic"><div class="stamp">${s.stamp}</div>${PICS[s.pic](80)}</div>
     <h3>${s.head}</h3>
   </article>`).join('');
 
 // shrink any card stamp that would run into its picture
 document.querySelectorAll('.card .pic').forEach(p => {
-  const st = p.querySelector('.stamp'); let size = 30;
-  while (st.offsetWidth > p.clientWidth - 68 && size > 20) st.style.fontSize = (--size) + 'px';
+  const st = p.querySelector('.stamp'); let size = 40;
+  while (st.offsetWidth > p.clientWidth - 86 && size > 24) st.style.fontSize = (--size) + 'px';
 });
 
 document.getElementById('briefs').innerHTML =
   BRIEFS.map(b => `<li><b>${b.place}:</b> ${b.text}</li>`).join('');
 
-// ---------- locator map: coarse coastlines, equirectangular, lon -125..160, lat -42..72 ----------
-const MAP = { w:286, h:118, lon0:-125, lon1:160, lat0:-42, lat1:72 };
-const px = ([lon, lat]) => [((lon - MAP.lon0) / (MAP.lon1 - MAP.lon0)) * MAP.w, ((MAP.lat1 - lat) / (MAP.lat1 - MAP.lat0)) * MAP.h];
-const LAND = [
-  [[-168,66],[-140,70],[-100,72],[-80,68],[-62,58],[-55,50],[-66,44],[-76,35],[-81,25],[-90,29],[-97,26],[-97,18],[-88,15],[-83,9],[-79,8],[-92,15],[-105,20],[-112,30],[-118,34],[-124,40],[-124,48],[-135,58],[-150,60],[-165,60]],
-  [[-50,60],[-42,60],[-20,70],[-20,80],[-60,82],[-70,76],[-55,68]],
-  [[-79,8],[-72,12],[-62,10],[-50,2],[-35,-5],[-35,-10],[-40,-22],[-48,-28],[-58,-38],[-65,-42],[-68,-55],[-74,-50],[-72,-35],[-71,-18],[-78,-8],[-81,-3]],
-  [[-10,36],[-9,43],[-2,44],[-5,48],[2,51],[8,54],[10,58],[5,62],[15,69],[28,71],[40,67],[45,60],[50,47],[40,45],[30,46],[28,41],[23,37],[20,40],[16,38],[12,44],[8,44],[3,43],[-2,37]],
-  [[-5,50],[2,51],[0,54],[-3,58],[-6,56]],
-  [[-17,15],[-17,21],[-10,30],[-6,36],[10,37],[20,32],[32,31],[34,28],[43,12],[51,12],[42,-2],[40,-15],[35,-25],[20,-35],[17,-29],[12,-17],[13,-6],[9,4],[-8,4],[-15,10]],
-  [[28,41],[36,36],[35,31],[43,13],[52,16],[57,24],[62,25],[67,24],[72,20],[77,8],[80,15],[88,22],[92,21],[98,16],[100,13],[103,1],[105,10],[108,16],[106,21],[117,24],[122,30],[121,38],[125,40],[129,35],[130,43],[141,46],[142,53],[136,55],[155,60],[163,62],[180,66],[180,70],[140,73],[110,77],[80,73],[68,70],[60,68],[50,68],[45,60],[50,47],[40,45],[30,46]],
-  [[130,31],[135,34],[140,36],[142,40],[141,45],[139,42],[136,36]],
-  [[95,5],[106,-6],[103,-5],[96,3]], [[106,-6],[114,-8],[106,-7.5]], [[109,1],[117,7],[119,1],[116,-4],[110,-3]],
-  [[114,-22],[122,-18],[130,-12],[137,-12],[142,-11],[146,-19],[153,-26],[150,-37],[141,-38],[135,-35],[129,-32],[115,-34]],
-];
-const land = LAND.map(poly => `<path d="M${poly.map(p => px(p).map(v => v.toFixed(1)).join(' ')).join(' L')}Z" fill="#cbbf9f" stroke="#a2967a" stroke-width=".6"/>`).join('');
-// small nudges keep crowded European / Middle East markers readable
-const NUDGE = { 1:[3,4], 2:[-1,5], 3:[2,0], 4:[2,-4], 6:[-1,-2], 7:[-4,3], 8:[-3,-5], 11:[1,3] };
-const pins = [...LEADS, ...CARDS].map(s => {
-  const [x, y] = px(s.at); const [dx, dy] = NUDGE[s.n] || [0, 0];
-  const lead = s.n <= 3;
-  return `<g><circle cx="${(x + dx).toFixed(1)}" cy="${(y + dy).toFixed(1)}" r="${lead ? 6.4 : 5.4}" fill="${lead ? R : K}" stroke="#fff" stroke-width="1"/>
-    <text x="${(x + dx).toFixed(1)}" y="${(y + dy + 3).toFixed(1)}" text-anchor="middle" font-size="${s.n > 9 ? 6.6 : 8}" font-weight="800" fill="#fff" font-family="Arial">${s.n}</text></g>`;
-}).join('');
-document.getElementById('map').innerHTML =
-  `<svg width="${MAP.w}" height="${MAP.h}" viewBox="0 0 ${MAP.w} ${MAP.h}">${land}${pins}</svg>`;
 
 document.getElementById('check').innerHTML =
   `Made on 23 Nov, after 22 Nov had ended everywhere: these are reports, not forecasts, and results are final. ` +
   `Left out as Saturday news: Verstappen’s Las Vegas win, the NWSL final, the ship hit off Finland.`;
 
 document.getElementById('footer').innerHTML =
-  `<b>HOW TO READ IT:</b> at any size, the date and the ${stamps} red stamps tell the day; up close, ${ALL.length} stories from ${regionsUsed} regions, each with its place and source. ` +
+  `<b>HOW TO READ IT:</b> the date and the ${stamps} red stamps tell the day at any size; ${ALL.length} stories from ${regionsUsed} regions, each with its place and source. ` +
   `Claims by warring sides are marked as claims. Sources: Al Jazeera, Reuters, AP, AFP, NPR, ATP, Wafa, IRNA, UKMTO, The Star, The Daily Star, Wikipedia Current Events.`;
 </script>
 </body>
