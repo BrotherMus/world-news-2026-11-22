@@ -14,16 +14,15 @@
   header { padding:4px 14px 0; }
   .date { font:900 66px/1 "Segoe UI Black", "Arial Black", Arial; letter-spacing:-1.5px; text-align:center; white-space:nowrap; }
   .strap { font:600 15.5px/1.25 Georgia, serif; text-align:center; margin-top:3px; color:#222; }
-  .regions { display:flex; gap:6px; justify-content:center; margin:5px 0 0; padding-bottom:5px; border-bottom:3px double var(--rule); }
-  .regions span { font:700 11px/17px "Segoe UI", Arial; padding:0 7px; background:#e7dfcb; border-radius:2px; }
-  .regions span b { color:var(--red); }
+  .regions { display:flex; margin:5px 0 0; height:20px; }
+  .regions span { font:800 11.5px/20px "Segoe UI", Arial; color:#fff; text-align:center; letter-spacing:.4px; white-space:nowrap; overflow:hidden; }
   .leads { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; padding:7px 14px 0; }
   .lead { border-right:1px solid #b9b09a; padding-right:10px; position:relative; }
   .lead:last-child { border-right:0; padding-right:0; }
   .label { font:700 11px/13px "Segoe UI", Arial; color:var(--muted); text-transform:uppercase; letter-spacing:.3px;
     white-space:nowrap; overflow:hidden; }
   .label i { font-style:normal; color:var(--red); }
-  .lead .pic { position:relative; height:100px; margin-top:2px; background:#e4ddca; border-radius:3px; overflow:hidden; }
+  .lead .pic { position:relative; height:92px; margin-top:2px; background:#e4ddca; border-radius:3px; overflow:hidden; }
   .lead .pic svg { position:absolute; inset:0; width:100%; height:100%; }
   .stamp { font-family:Impact, "Arial Narrow Bold", sans-serif; color:var(--red); line-height:1; white-space:nowrap; }
   .lead .stamp { position:absolute; left:8px; top:7px; font-size:31px; background:var(--paper); padding:2px 7px 1px;
@@ -34,11 +33,12 @@
   .lead p { font:600 14.2px/1.27 "Segoe UI", Arial; margin-top:3px; color:#1d1c19; }
   .cards { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; padding:8px 14px 0; border-top:0; }
   .cardrow-rule { margin:8px 14px 0; border-top:2px solid var(--rule); }
-  .card { background:#fbf8f0; border:1px solid #cfc6b0; border-radius:3px; padding:5px 9px 6px; height:178px; overflow:hidden; }
-  .card .pic { display:flex; align-items:center; justify-content:space-between; height:84px; margin-top:2px; }
-  .card .stamp { font-size:40px; }
+  .card { background:#fbf8f0; border:1px solid #cfc6b0; border-radius:3px; padding:4px 9px 5px; height:184px; overflow:hidden; }
+  .card .pic { display:flex; align-items:center; justify-content:space-between; height:62px; margin-top:1px; }
+  .card .stamp { font-size:38px; }
   .card svg { flex:none; }
-  .card h3 { font:800 21px/1.12 "Segoe UI", Arial; margin-top:4px; letter-spacing:-.4px; }
+  .card h3 { font:800 20px/1.1 "Segoe UI", Arial; margin-top:2px; letter-spacing:-.4px; }
+  .card p { font:600 13.4px/1.24 "Segoe UI", Arial; margin-top:3px; color:#26241f; }
   .bottom { display:grid; grid-template-columns:1fr 292px; gap:14px; padding:10px 14px 0; }
   .mapbox h4, .briefs h4 { font:800 12px/15px "Segoe UI", Arial; letter-spacing:.6px; border-bottom:2px solid var(--rule);
     margin-bottom:3px; }
@@ -47,7 +47,7 @@
   .check b.t { font:800 12px/15px "Segoe UI", Arial; letter-spacing:.5px; color:var(--red); }
   .check p { font:600 11px/1.28 "Segoe UI", Arial; color:#222; }
   .briefs .cols { columns:2; column-gap:16px; column-rule:1px solid #c4bba5; }
-  .briefs li { list-style:none; font:600 16px/1.25 "Segoe UI", Arial; break-inside:avoid; margin-bottom:4px; color:#141412; }
+  .briefs li { list-style:none; font:600 15.6px/1.22 "Segoe UI", Arial; break-inside:avoid; margin-bottom:3px; color:#141412; }
   .check { margin-top:0; }
   .check p { font:600 13.6px/1.27 "Segoe UI", Arial; }
   .check ul { margin-top:3px; }
@@ -95,21 +95,29 @@ const LEADS = [
 ];
 const CARDS = [
   { n:4, place:'Dymer, Ukraine', field:'Russia–Ukraine', region:'Europe', src:'Reuters', at:[30.3,50.8],
-    stamp:'10 KILLED', head:'Strike collapses flats near Kyiv', pic:'flats' },
+    stamp:'10 KILLED', head:'Strike collapses flats near Kyiv', pic:'flats',
+    body:'Part of a five-storey block falls in Dymer; Bila Tserkva also hit.' },
   { n:5, place:'Washington', field:'US politics', region:'N. America', src:'Al Jazeera', at:[-77,38.9],
-    stamp:'258 SEATS', head:'Democrats\' biggest House since 1992', pic:'capitol' },
+    stamp:'258 SEATS', head:'Democrats\' biggest House since 1992', pic:'capitol',
+    body:'Hubbard unseats Foxx in NC-5 by 330 votes after a recount.' },
   { n:6, place:'Turin, Italy', field:'Tennis', region:'Europe', src:'ATP · Reuters', at:[7.7,45.1],
-    stamp:'6-2 7-6', head:'Alcaraz tops Zverev in ATP Finals', pic:'tennis' },
+    stamp:'6-2 7-6', head:'Alcaraz tops Zverev in ATP Finals', pic:'tennis',
+    body:'Saves three set points in the tiebreak for his first Finals title.' },
   { n:7, place:'Portimão, Portugal', field:'MotoGP', region:'Europe', src:'AP', at:[-8.5,37.1],
-    stamp:'8TH TITLE', head:'Márquez equals Agostini\'s record', pic:'moto' },
+    stamp:'8TH TITLE', head:'Márquez equals Agostini\'s record', pic:'moto',
+    body:'Eighth place in Portimão is enough; Bezzecchi wins the race.' },
   { n:8, place:'Liverpool, UK', field:'Football', region:'Europe', src:'Al Jazeera', at:[-3,53.4],
-    stamp:'4-0', head:'Liverpool rout 10-man Man United', pic:'football' },
+    stamp:'4-0', head:'Liverpool rout 10-man Man United', pic:'football',
+    body:'Yoro sent off after 8 minutes; a nightmare start for Pochettino.' },
   { n:9, place:'Khartoum, Sudan', field:'Sudan war', region:'Africa', src:'AFP', at:[32.5,15.6],
-    stamp:'4 KILLED', head:'RSF drones hit homes, UN office', pic:'drone' },
+    stamp:'4 KILLED', head:'RSF drones hit homes, UN office', pic:'drone',
+    body:'Night attacks on Omdurman and south of the capital; 9 wounded.' },
   { n:10, place:'Serang, Indonesia', field:'Industrial fire', region:'E. Asia & Pacific', src:'AFP', at:[106.1,-6.1],
-    stamp:'36 MISSING', head:'Sweet-factory fire kills 3 in Banten', pic:'factory' },
+    stamp:'36 MISSING', head:'Sweet-factory fire kills 3 in Banten', pic:'factory',
+    body:'Confectionery plant blaze in Serang; 4 injured, search goes on.' },
   { n:11, place:'Tupanciretã, Brazil', field:'Weather', region:'S. America', src:'AFP', at:[-53.8,-29.1],
-    stamp:'250 HURT', head:'Violent storm kills 5 in the south', pic:'storm' },
+    stamp:'250 HURT', head:'Violent storm kills 5 in the south', pic:'storm',
+    body:'Severe thunderstorm strikes Tupanciretã, Rio Grande do Sul.' },
 ];
 const BRIEFS = [
   { place:'West Bank', field:'Occupation', region:'Middle East', text:'settlers torch 12 cars in 3 villages' },
@@ -135,8 +143,13 @@ const stamps = LEADS.length + CARDS.length;
 
 document.getElementById('tally').innerHTML =
   `<b>${ALL.length} STORIES</b> · ${regionsUsed} REGIONS · ${fields.size} FIELDS · ALL FROM ONE DAY`;
-document.getElementById('regions').innerHTML =
-  REGION_ORDER.map(r => `<span>${r.toUpperCase()} <b>${regionCount[r]}</b></span>`).join('');
+// a full-width bar: each region's share of the page's stories, in its own colour
+const REGION_COLOUR = { 'Europe':'#1f4e8c', 'Middle East':'#b0202f', 'Africa':'#2f7d3b', 'N. America':'#6a3d9a',
+  'S. America':'#b8860b', 'South Asia':'#c4561a', 'E. Asia & Pacific':'#137a80' };
+const REGION_SHORT = { 'Europe':'EUROPE', 'Middle East':'MIDEAST', 'Africa':'AFRICA', 'N. America':'N. AMER',
+  'S. America':'S. AMER', 'South Asia':'S. ASIA', 'E. Asia & Pacific':'ASIA-PAC' };
+document.getElementById('regions').innerHTML = REGION_ORDER.filter(r => regionCount[r]).map(r =>
+  `<span style="flex:${regionCount[r] + 3};background:${REGION_COLOUR[r]}">${REGION_SHORT[r]} ${regionCount[r]}</span>`).join('');
 
 // ---------- drawings: flat vector pictures, one per story ----------
 const R = '#c8102e', K = '#16161a', W = '#fbf8f0', S = '#8fa9b4', G = '#7a7466', Y = '#f2a516', O = '#e8590c';
@@ -224,14 +237,15 @@ document.querySelectorAll('.lead .pic svg').forEach(svg => svg.setAttribute('pre
 document.getElementById('cards').innerHTML = CARDS.map(s => `
   <article class="card">
     <div class="label"><span class="num">${s.n}</span>${s.place} · ${s.src}</div>
-    <div class="pic"><div class="stamp">${s.stamp}</div>${PICS[s.pic](80)}</div>
+    <div class="pic"><div class="stamp">${s.stamp}</div>${PICS[s.pic](62)}</div>
     <h3>${s.head}</h3>
+    <p>${s.body}</p>
   </article>`).join('');
 
 // shrink any card stamp that would run into its picture
 document.querySelectorAll('.card .pic').forEach(p => {
-  const st = p.querySelector('.stamp'); let size = 40;
-  while (st.offsetWidth > p.clientWidth - 86 && size > 24) st.style.fontSize = (--size) + 'px';
+  const st = p.querySelector('.stamp'); let size = 38;
+  while (st.offsetWidth > p.clientWidth - 68 && size > 24) st.style.fontSize = (--size) + 'px';
 });
 
 document.getElementById('briefs').innerHTML =
