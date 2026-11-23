@@ -20,7 +20,7 @@
   .leads { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; padding:7px 14px 0; }
   .lead { border-right:1px solid #b9b09a; padding-right:10px; position:relative; }
   .lead:last-child { border-right:0; padding-right:0; }
-  .label { font:700 10.5px/13px "Segoe UI", Arial; color:var(--muted); text-transform:uppercase; letter-spacing:.3px;
+  .label { font:700 11px/13px "Segoe UI", Arial; color:var(--muted); text-transform:uppercase; letter-spacing:.3px;
     white-space:nowrap; overflow:hidden; }
   .label i { font-style:normal; color:var(--red); }
   .lead .pic { position:relative; height:100px; margin-top:2px; background:#e4ddca; border-radius:3px; overflow:hidden; }
@@ -31,14 +31,14 @@
   .num { display:inline-block; width:17px; height:17px; border-radius:50%; background:var(--ink); color:#fff;
     font:700 11px/17px Arial; text-align:center; margin-right:4px; vertical-align:1px; }
   .lead h2 { font:800 20.5px/1.12 "Segoe UI", Arial; margin-top:5px; letter-spacing:-.3px; }
-  .lead p { font:500 12.6px/1.3 "Segoe UI", Arial; margin-top:3px; color:#26241f; }
+  .lead p { font:600 13.2px/1.28 "Segoe UI", Arial; margin-top:3px; color:#1d1c19; }
   .cards { display:grid; grid-template-columns:repeat(5,1fr); gap:8px; padding:8px 14px 0; border-top:0; }
   .cardrow-rule { margin:8px 14px 0; border-top:2px solid var(--rule); }
-  .card { background:#fbf8f0; border:1px solid #cfc6b0; border-radius:3px; padding:4px 6px 5px; height:133px; overflow:hidden; }
-  .card .pic { display:flex; align-items:center; justify-content:space-between; height:66px; margin-top:2px; }
+  .card { background:#fbf8f0; border:1px solid #cfc6b0; border-radius:3px; padding:4px 6px 5px; height:136px; overflow:hidden; }
+  .card .pic { display:flex; align-items:center; justify-content:space-between; height:64px; margin-top:2px; }
   .card .stamp { font-size:30px; }
   .card svg { flex:none; }
-  .card h3 { font:800 16.8px/1.13 "Segoe UI", Arial; margin-top:3px; letter-spacing:-.2px; }
+  .card h3 { font:800 18px/1.12 "Segoe UI", Arial; margin-top:2px; letter-spacing:-.35px; }
   .bottom { display:grid; grid-template-columns:286px 1fr; gap:12px; padding:8px 14px 0; }
   .mapbox h4, .briefs h4 { font:800 12px/15px "Segoe UI", Arial; letter-spacing:.6px; border-bottom:2px solid var(--rule);
     margin-bottom:3px; }
@@ -47,7 +47,7 @@
   .check b.t { font:800 12px/15px "Segoe UI", Arial; letter-spacing:.5px; color:var(--red); }
   .check p { font:600 11px/1.28 "Segoe UI", Arial; color:#222; }
   .briefs .cols { columns:3; column-gap:12px; column-rule:1px solid #c4bba5; }
-  .briefs li { list-style:none; font:600 12.4px/1.27 "Segoe UI", Arial; break-inside:avoid; margin-bottom:3px; color:#1d1c19; }
+  .briefs li { list-style:none; font:600 13.4px/1.25 "Segoe UI", Arial; break-inside:avoid; margin-bottom:4px; color:#141412; }
   .briefs li b { color:var(--red); font-weight:800; }
   footer { position:absolute; left:14px; right:14px; bottom:6px; border-top:3px double var(--rule); padding-top:3px;
     font:600 11px/1.3 "Segoe UI", Arial; color:#2b2924; }
@@ -120,7 +120,6 @@ const BRIEFS = [
   { place:'Ukraine', field:'Russia–Ukraine', region:'Europe', text:'Zelenskyy: 2,700 drones and 165 missiles in a week; asks US to free Patriots' },
   { place:'Vyshneve', field:'Russia–Ukraine', region:'Europe', text:'drone hits grocery store, 3 killed, 15 hurt' },
   { place:'Bangladesh', field:'Labour', region:'South Asia', text:'Gazipur garment workers clash with police over minimum wage' },
-  { place:'Bangladesh', field:'Security', region:'South Asia', text:'95 border-guard platoons sent to 7 districts' },
   { place:'India', field:'Road safety', region:'South Asia', text:'Rajasthan road crashes kill at least 12' },
   { place:'Taiwan', field:'Film', region:'E. Asia & Pacific', text:'HK film “We Are Born Good” wins Golden Horse top prize' },
   { place:'Philippines', field:'Infrastructure', region:'E. Asia & Pacific', text:'bridge tilts in Central Luzon, 9 fall into river' },
@@ -128,15 +127,12 @@ const BRIEFS = [
   { place:'Thailand', field:'Autos', region:'E. Asia & Pacific', text:'Honda, Toyota recall 1.6m cars over airbags' },
   { place:'Cambodia', field:'Health', region:'E. Asia & Pacific', text:'first mpox case in 30 months' },
   { place:'Japan', field:'Weather', region:'E. Asia & Pacific', text:'heavy snow strands Fukushima villagers' },
-  { place:'Badminton', field:'Badminton', region:'E. Asia & Pacific', text:'Malaysia’s Wei Chong/Kai Wun win Hong Kong Open' },
   { place:'Seattle', field:'Immigration', region:'N. America', text:'officials condemn ICE arrests at the airport' },
   { place:'US Senate', field:'US politics', region:'N. America', text:'Trump attacks Schumer as Democrats seek new leader' },
   { place:'Crypto', field:'Crypto', region:'N. America', text:'Trump to host dinner for top holders of his meme coin' },
   { place:'Poland', field:'Accidents', region:'Europe', text:'house fire in Trzcianka kills 3' },
-  { place:'Croatia', field:'Health', region:'Europe', text:'outrage over patient’s death at psychiatric hospital' },
   { place:'Türkiye', field:'Wildlife', region:'Europe', text:'lion on the loose alarms residents' },
   { place:'Nigeria', field:'Accidents', region:'Africa', text:'major fire at a Lagos fuel station' },
-  { place:'Tanzania', field:'Accidents', region:'Africa', text:'fire hits Zanzibar tourist spot' },
 ];
 
 const ALL = [...LEADS, ...CARDS, ...BRIEFS];
@@ -278,8 +274,8 @@ document.getElementById('map').innerHTML =
   `<svg width="${MAP.w}" height="${MAP.h}" viewBox="0 0 ${MAP.w} ${MAP.h}">${land}${pins}</svg>`;
 
 document.getElementById('check').innerHTML =
-  `Every item happened, or was first reported, on Sun 22 Nov 2026 (any time zone); results shown are final. ` +
-  `Left out as Saturday 21 Nov news: Verstappen’s Las Vegas win, the NWSL final, the ship hit off Finland, the “El Chapo Isidro” arrest.`;
+  `Made on 23 Nov, after 22 Nov had ended everywhere: these are reports, not forecasts, and results are final. ` +
+  `Left out as Saturday news: Verstappen’s Las Vegas win, the NWSL final, the ship hit off Finland.`;
 
 document.getElementById('footer').innerHTML =
   `<b>HOW TO READ IT:</b> at any size, the date and the ${stamps} red stamps tell the day; up close, ${ALL.length} stories from ${regionsUsed} regions, each with its place and source. ` +
