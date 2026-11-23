@@ -17,6 +17,11 @@
   .regions { display:flex; gap:6px; justify-content:center; margin:5px 0 0; padding-bottom:5px; border-bottom:3px double var(--rule); }
   .regions span { font:700 11px/17px "Segoe UI", Arial; padding:0 7px; background:#e7dfcb; border-radius:2px; }
   .regions span b { color:var(--red); }
+  .figures { display:grid; grid-template-columns:repeat(6,1fr); margin:6px 14px 0; border:2px solid var(--ink); background:#fffdf6; }
+  .figures div { text-align:center; padding:2px 4px 3px; border-right:1px solid #c4bba5; }
+  .figures div:last-child { border-right:0; }
+  .figures b { display:block; font:400 27px/1 Impact, "Arial Narrow Bold", sans-serif; color:var(--red); }
+  .figures span { display:block; font:700 11.5px/1.15 "Segoe UI", Arial; color:#1d1c19; white-space:nowrap; }
   .leads { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; padding:7px 14px 0; }
   .lead { border-right:1px solid #b9b09a; padding-right:10px; position:relative; }
   .lead:last-child { border-right:0; padding-right:0; }
@@ -34,8 +39,8 @@
   .lead p { font:600 14.2px/1.27 "Segoe UI", Arial; margin-top:3px; color:#1d1c19; }
   .cards { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; padding:8px 14px 0; border-top:0; }
   .cardrow-rule { margin:8px 14px 0; border-top:2px solid var(--rule); }
-  .card { background:#fbf8f0; border:1px solid #cfc6b0; border-radius:3px; padding:5px 9px 6px; height:178px; overflow:hidden; }
-  .card .pic { display:flex; align-items:center; justify-content:space-between; height:84px; margin-top:2px; }
+  .card { background:#fbf8f0; border:1px solid #cfc6b0; border-radius:3px; padding:4px 9px 5px; height:151px; overflow:hidden; }
+  .card .pic { display:flex; align-items:center; justify-content:space-between; height:70px; margin-top:1px; }
   .card .stamp { font-size:40px; }
   .card svg { flex:none; }
   .card h3 { font:800 21px/1.12 "Segoe UI", Arial; margin-top:4px; letter-spacing:-.4px; }
@@ -47,7 +52,7 @@
   .check b.t { font:800 12px/15px "Segoe UI", Arial; letter-spacing:.5px; color:var(--red); }
   .check p { font:600 11px/1.28 "Segoe UI", Arial; color:#222; }
   .briefs .cols { columns:2; column-gap:16px; column-rule:1px solid #c4bba5; }
-  .briefs li { list-style:none; font:600 16px/1.25 "Segoe UI", Arial; break-inside:avoid; margin-bottom:4px; color:#141412; }
+  .briefs li { list-style:none; font:600 15.4px/1.22 "Segoe UI", Arial; break-inside:avoid; margin-bottom:3px; color:#141412; }
   .check { margin-top:0; }
   .check p { font:600 14px/1.3 "Segoe UI", Arial; }
   .check b.t { font-size:16px; line-height:20px; }
@@ -64,6 +69,7 @@
   <div class="strap">COP31 collapses, sea drones sink a Russian warship, tankers burn at Hormuz — and Alcaraz and Márquez make history</div>
   <div class="regions" id="regions"></div>
 </header>
+<section class="figures" id="figures"></section>
 <section class="leads" id="leads"></section>
 <div class="cardrow-rule"></div>
 <section class="cards" id="cards"></section>
@@ -124,7 +130,19 @@ const BRIEFS = [
   { place:'Philippines', field:'Infrastructure', region:'E. Asia & Pacific', text:'tilting bridge drops 9 into a river' },
 ];
 
+// the day in numbers: figures not already on a stamp below
+const FIGURES = [
+  ['$120bn', 'COP31 adaptation goal dropped'],
+  ['2,700', 'Russian drones in a week'],
+  ['330', 'votes: NC-5 recount margin'],
+  ['9–7', 'Alcaraz tiebreak, 3 set pts saved'],
+  ['439', 'Márquez points, 43 clear'],
+  ['1.6m', 'Honda, Toyota cars recalled'],
+];
+
 const ALL = [...LEADS, ...CARDS, ...BRIEFS];
+document.getElementById('figures').innerHTML =
+  FIGURES.map(([n, what]) => `<div><b>${n}</b><span>${what}</span></div>`).join('');
 const REGION_ORDER = ['Europe','Middle East','Africa','N. America','S. America','South Asia','E. Asia & Pacific'];
 const regionCount = Object.fromEntries(REGION_ORDER.map(r => [r, ALL.filter(s => s.region === r).length]));
 const fields = new Set(ALL.map(s => s.field));
@@ -222,7 +240,7 @@ document.querySelectorAll('.lead .pic svg').forEach(svg => svg.setAttribute('pre
 document.getElementById('cards').innerHTML = CARDS.map(s => `
   <article class="card">
     <div class="label"><span class="num">${s.n}</span>${s.place} · ${s.src}</div>
-    <div class="pic"><div class="stamp">${s.stamp}</div>${PICS[s.pic](80)}</div>
+    <div class="pic"><div class="stamp">${s.stamp}</div>${PICS[s.pic](70)}</div>
     <h3>${s.head}</h3>
   </article>`).join('');
 
