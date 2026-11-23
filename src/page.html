@@ -31,7 +31,7 @@
   .num { display:inline-block; width:17px; height:17px; border-radius:50%; background:var(--ink); color:#fff;
     font:700 11px/17px Arial; text-align:center; margin-right:4px; vertical-align:1px; }
   .lead h2 { font:800 20.5px/1.12 "Segoe UI", Arial; margin-top:5px; letter-spacing:-.3px; }
-  .lead p { font:600 13.2px/1.28 "Segoe UI", Arial; margin-top:3px; color:#1d1c19; }
+  .lead p { font:600 14.2px/1.27 "Segoe UI", Arial; margin-top:3px; color:#1d1c19; }
   .cards { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; padding:8px 14px 0; border-top:0; }
   .cardrow-rule { margin:8px 14px 0; border-top:2px solid var(--rule); }
   .card { background:#fbf8f0; border:1px solid #cfc6b0; border-radius:3px; padding:5px 9px 6px; height:178px; overflow:hidden; }
@@ -47,7 +47,7 @@
   .check b.t { font:800 12px/15px "Segoe UI", Arial; letter-spacing:.5px; color:var(--red); }
   .check p { font:600 11px/1.28 "Segoe UI", Arial; color:#222; }
   .briefs .cols { columns:2; column-gap:16px; column-rule:1px solid #c4bba5; }
-  .briefs li { list-style:none; font:600 16px/1.25 "Segoe UI", Arial; break-inside:avoid; margin-bottom:7px; color:#141412; }
+  .briefs li { list-style:none; font:600 16px/1.25 "Segoe UI", Arial; break-inside:avoid; margin-bottom:4px; color:#141412; }
   .check { margin-top:0; }
   .check p { font:600 14px/1.3 "Segoe UI", Arial; }
   .check b.t { font-size:16px; line-height:20px; }
@@ -83,13 +83,13 @@
 const LEADS = [
   { n:1, place:'Antalya, Türkiye', field:'Climate', region:'Europe', src:'Al Jazeera · NPR', at:[30.7,36.9],
     stamp:'NO DEAL', head:'COP31 climate talks collapse without a deal',
-    body:'Talks end with no fossil-fuel text and the $120bn adaptation goal dropped — the first failed COP since 2009. Guterres "deeply disappointed".', pic:'cop' },
+    body:'No fossil-fuel text, $120bn adaptation goal dropped: the first failed COP since 2009.', pic:'cop' },
   { n:2, place:'Benghazi, Libya', field:'War at sea', region:'Africa', src:'Reuters · AP · Al Jazeera', at:[20.1,32.1],
     stamp:'SUNK', head:'Sea drones sink a Russian warship in Libya',
-    body:'Corvette Merkury capsizes in port at dawn; deaths reported, 10+ hurt. A Malta-flagged ship is hit at dusk. Unclaimed; AP sources point to Ukraine.', pic:'warship' },
+    body:'Corvette Merkury capsizes in port at dawn; a Malta-flagged ship is hit at dusk. AP sources point to Ukraine.', pic:'warship' },
   { n:3, place:'Strait of Hormuz', field:'Iran war', region:'Middle East', src:'IRNA · UKMTO', at:[56.3,26.6],
     stamp:'2 TANKERS', head:'Two oil tankers set ablaze at Hormuz',
-    body:'Iran says they hit mines on "unauthorised" routes; UKMTO probes a tanker incident off Chabahar. IRGC claims a US MQ-1 drone shot down.', pic:'tankers' },
+    body:'Iran says they hit mines on "unauthorised" routes; UKMTO probes an incident off Chabahar.', pic:'tankers' },
 ];
 const CARDS = [
   { n:4, place:'Dymer, Ukraine', field:'Russia–Ukraine', region:'Europe', src:'Reuters', at:[30.3,50.8],
@@ -114,6 +114,8 @@ const BRIEFS = [
   { place:'Israel', field:'Israeli politics', region:'Middle East', text:'Likud–Yashar coalition talks fail' },
   { place:'Yemen', field:'Yemen war', region:'Middle East', text:'Saudis down Houthi drone aimed at Riyadh' },
   { place:'Ukraine', field:'Russia–Ukraine', region:'Europe', text:'Zelenskyy asks US to release Patriots' },
+  { place:'Vyshneve', field:'Russia–Ukraine', region:'Europe', text:'drone hits a grocery store, 3 killed' },
+  { place:'Poland', field:'Accidents', region:'Europe', text:'house fire in Trzcianka kills 3' },
   { place:'Seattle', field:'Immigration', region:'N. America', text:'officials condemn ICE airport arrests' },
   { place:'South Korea', field:'Education & AI', region:'E. Asia & Pacific', text:'minister quits over AI exam cheating' },
   { place:'Bangladesh', field:'Labour', region:'South Asia', text:'garment workers clash with police over pay' },
